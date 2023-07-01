@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myfarmed/PackagesContenues/ShopTopBar.dart';
 import 'package:myfarmed/PackagesContenues/bottomBar.dart';
 
 import '../PackagesContenues/CategoryContenues.dart';
@@ -11,56 +12,14 @@ class Shoppage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.green,
+      appBar: AppBar(
+        elevation: 0,
+          flexibleSpace: ShopTopBar(),
+      ),
       body: ListView(
         children: [
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "My Farmed",
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, "cardpage");
-                          },
-                          child:  const Icon(
-                            Icons.add_shopping_cart_outlined,
-                            size: 30,
-                            color: Colors.green,
-                          ),
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: 10,
-                      ),
-                      const Icon(
-                        Icons.notification_add_outlined,
-                        size: 30,
-                        color: Colors.green,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
+            SizedBox(
             height: 15,
           ),
           Container(
@@ -141,7 +100,7 @@ class Shoppage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: bottomBar(),
+    //  bottomNavigationBar: bottomBar(),
     );
   }
 }

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../PackagesContenues/CategoryContenues.dart';
-import '../PackagesContenues/Shopproducts.dart';
-import '../PackagesContenues/bottomBar.dart';
 import '../PackagesContenues/formationItems.dart';
 import '../PackagesContenues/formationSlider.dart';
 
@@ -106,7 +102,7 @@ class formationPage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: bottomBar(),
+    //  bottomNavigationBar: bottomBar(),
     );
   }
 }

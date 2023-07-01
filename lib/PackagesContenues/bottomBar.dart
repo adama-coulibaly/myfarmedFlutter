@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:myfarmed/Pages/HomePage.dart';
+import 'package:myfarmed/Pages/ShopPage.dart';
+import 'package:myfarmed/Pages/cardPage.dart';
+import 'package:myfarmed/Pages/formationPage.dart';
+
+import '../Pages/fermePage.dart';
+import '../Pages/forumPage.dart';
+import 'formationVideaoFrame.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({Key? key}) : super(key: key);
@@ -10,17 +18,71 @@ class bottomBar extends StatefulWidget {
 
 class _State extends State<bottomBar> {
 
-  List onglets = [
+  int _selectedIndex = 0;
+
+  static final List<Widget> _widgetOption =<Widget>[
+    const Homepage(),
+    const Shoppage(),
+    const fermePage(),
+    const formationPage(),
+    const FormationVideo(),
+  ];
+
+/*  List onglets = [
     {"id": 1, "name_onglet": 'accueil',"Icon":Icons.home_outlined},
     {"id": 2, "name_onglet": 'forum',"Icon":Icons.chat_outlined},
     {"id": 3, "name_onglet": 'marché',"Icon":Icons.shop}
-  ];
+  ];*/
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(
+          child: _widgetOption.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar:  Container(
+          color: Colors.green,
+          child:  Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+            child: GNav(
+
+              padding: const EdgeInsets.all(5),
+              color: Colors.white,
+              activeColor: Colors.green,
+              gap: 8,
+              tabBackgroundColor: Colors.white,
+
+
+
+              tabs: const [
+
+                GButton(icon: Icons.home_outlined,text: "Accueil",iconSize: 35),
+                GButton(icon: Icons.shopping_cart_outlined,text: "Marché",iconSize: 35),
+                GButton(icon: Icons.home_work_outlined,text: "Ferme",iconSize: 35),
+                GButton(icon: Icons.school_outlined,text: "Formation",iconSize: 35),
+                GButton(icon: Icons.forum_outlined,text: "Forum",iconSize: 35),
+              ],
+              selectedIndex: _selectedIndex,
+              onTabChange: (index){
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+
+
+
+
+            ),
+          ),),
+      ),
+    );
+  }
+  /*
+   Container(
       color: Colors.blueGrey,
-      child: const Padding(
+      child:  Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
         child: GNav(
 
@@ -30,6 +92,8 @@ class _State extends State<bottomBar> {
           gap: 8,
           tabBackgroundColor: Colors.white54,
 
+
+
           tabs: [
 
             GButton(icon: Icons.home,text: "Accueil",iconSize: 35),
@@ -38,39 +102,18 @@ class _State extends State<bottomBar> {
             GButton(icon: Icons.grade,text: "Ferme",iconSize: 35),
             GButton(icon: Icons.confirmation_num_sharp,text: "Formation",iconSize: 35),
           ],
-
+      selectedIndex: _selectedIndex,
+          onTabChange: (index){
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
 
 
 
 
         ),
       ),);
-  }
-  /*Widget build(BuildContext context) {
-    return Container(
-            margin: EdgeInsets.all(5),
-            padding: EdgeInsets.all(2),
-            child: BottomNavigationBar(
-
-
-              backgroundColor: Colors.blue,
-              selectedFontSize: 15,
-              selectedItemColor: Colors.white,
-              selectedIconTheme: IconThemeData(),
-
-              onTap: (onglets) {
-                print("data ");
-              },
-
-              items: onglets.map(
-                      (item) =>
-                          BottomNavigationBarItem(
-                            icon: Icon(item['Icon']), label: item['name_onglet'],
-                          ),
-              )
-
-                  .toList(),
-            ),);
   }*/
 }
 

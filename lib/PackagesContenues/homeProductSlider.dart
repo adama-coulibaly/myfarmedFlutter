@@ -32,7 +32,14 @@ class _HomeProductSlider extends State<HomeProductSlider> {
               width: 210,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20)
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 2.0,
+                        spreadRadius: .05
+                    )
+                  ]
               ),
               child: Column(
                 children: [
@@ -44,7 +51,14 @@ class _HomeProductSlider extends State<HomeProductSlider> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             color: Colors.green,
-                            borderRadius: BorderRadius.circular(20)
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  blurRadius: 2.0,
+                                  spreadRadius: .05
+                              )
+                            ]
                         ),
                         child:const Text("-50%",
                           style: TextStyle(

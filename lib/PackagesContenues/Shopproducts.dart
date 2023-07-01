@@ -17,7 +17,14 @@ class Shopproducts extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  blurRadius: 2.0,
+                  spreadRadius: .05
+              )
+            ]
         ),
         child: Column(
           children: [
@@ -29,7 +36,14 @@ class Shopproducts extends StatelessWidget {
         padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: Colors.green,
-          borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  blurRadius: 2.0,
+                  spreadRadius: .05
+              )
+            ]
         ),
         child:const Text("-50%",
         style: TextStyle(

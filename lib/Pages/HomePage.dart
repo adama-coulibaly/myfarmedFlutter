@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfarmed/Pages/ShopPage.dart';
 
 import '../PackagesContenues/bottomBar.dart';
 import '../PackagesContenues/homeFormationItems.dart';
@@ -14,8 +15,10 @@ class Homepage extends StatelessWidget {
     return  MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Scaffold(
+      backgroundColor: Colors.green,
         appBar: AppBar(
           flexibleSpace: topAppBar(),
+          elevation: 0,
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.only(top: 15),
@@ -92,7 +95,14 @@ class Homepage extends StatelessWidget {
                   margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            blurRadius: 2.0,
+                            spreadRadius: .05
+                        )
+                      ]),
                   child: Column(
                     children: [
                       Container(
@@ -104,7 +114,8 @@ class Homepage extends StatelessWidget {
                               margin: EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                   color: Colors.green,
-                                  borderRadius: BorderRadius.circular(100)),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
                               child: Image.asset(
                                 "assets/images/3.jpg",
                                 fit: BoxFit.cover,
@@ -195,7 +206,7 @@ class Homepage extends StatelessWidget {
 
                       InkWell(
                         onTap: ()=>{
-                          Navigator.pushNamed(context, "shoppingpage")
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Shoppage()))
                         },
 
                         child: Container(
@@ -271,9 +282,9 @@ class Homepage extends StatelessWidget {
             ),
           )
         ),
-        bottomNavigationBar: Container(
+      /*  bottomNavigationBar: Container(
           child: bottomBar(),
-        ),
+        ),*/
       ),
 
     );

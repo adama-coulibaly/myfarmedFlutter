@@ -1,33 +1,53 @@
 import 'package:flutter/material.dart';
 
-
-void main() => runApp(loginPage());
-
-class loginPage extends StatelessWidget {
-  const loginPage({Key? key}) : super(key: key);
+class forgetLogin extends StatelessWidget {
+  const forgetLogin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
 
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.green,
+              elevation: 0,
+              title: Container(
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () => {
+                        Navigator.pop(context)
+                      },
+                      child: Icon(Icons.arrow_back,size: 30,),
+                    ),
+                    SizedBox(width: 45,),
+                    Container(
+                      child: const Text("Mot de passe oublié",style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
+                      ),),
+                    ),
+                  ],
+                ),
+              ),
+              ),
           body: SingleChildScrollView(
             child: Container(
               color: Colors.green,
               child: Column(
                 children: [
-                  SizedBox(height: 40,),
+                  SizedBox(height: 50,),
                   Container(
-                    height: 160,
-                    width: 160,
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage("assets/images/logo.png"),
-                    ),
+                    height: 150,
+                    width: 150,
+
+                    child: const Icon(Icons.lock_person,size: 160,
+                    color: Colors.white,),
                   ),
 
-                  SizedBox(height: 35,),
+                  SizedBox(height: 55,),
 
                   Container(
                     padding: EdgeInsets.all(10),
@@ -43,47 +63,19 @@ class loginPage extends StatelessWidget {
                       child:  Column(
                         children: [
 
-                          SizedBox(height: 35,),
+                          SizedBox(height: 55,),
 
                           TextFormField(
                             keyboardType: TextInputType.text,
                             decoration: const InputDecoration(
-                              labelText: "Adresse email ou phone",
+                              labelText: "Adresse email ou Téléphone",
                               border: OutlineInputBorder(),
                               prefixIcon: Icon(Icons.mail_outline,color: Colors.green,),
 
                             ),
                           ),
 
-                          SizedBox(height: 35,),
-                          TextFormField(
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: "Mot de passe",
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.lock,color: Colors.green,),
-                              suffixIcon: Icon(Icons.remove_red_eye_sharp,color: Colors.green,),
-                            ),
-                          ),
-
-
-                          const SizedBox(height: 50,),
-                          
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: ()=>{
-                                  Navigator.pushNamed(context, "forgetLogin")
-                                },
-                                child: const Text("Mot de passe oublié ?",
-                                  style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,
-                                fontSize: 18),),
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 50,),
+                       const SizedBox(height: 50,),
                           Container(
                             padding: EdgeInsets.all(7),
                             decoration: BoxDecoration(
@@ -94,7 +86,7 @@ class loginPage extends StatelessWidget {
                             child: TextButton(onPressed: () {
                               Navigator.pushNamed(context, "bottomBar");
                               print("object");
-                            }, child: const Text("Connexion",style:
+                            }, child: const Text("Envoyer",style:
                             TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -102,15 +94,15 @@ class loginPage extends StatelessWidget {
                             ),),
                             ),
                           ),
-                          const SizedBox(height: 110,),
+                          const SizedBox(height: 130,),
                           Container(
                             child: TextButton(onPressed: () {
-                              Navigator.pushNamed(context, "RegisterPage");
-                            }, child: const Text("Vous n'avez pas de compte ?",style:
+                              Navigator.pushNamed(context, "loginpage");
+                            }, child: const Text("Revenir sur la page de connexion",style:
                             TextStyle(
-                                fontSize: 17,
+                                fontSize: 20,
                                 color: Colors.green,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.bold,
                             ),),
 
                             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../PackagesContenues/CartAppBar.dart';
 import '../PackagesContenues/CartSamplesItems.dart';
+import '../PackagesContenues/cardBottomBar.dart';
 
 class cardPage extends StatelessWidget {
   const cardPage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class cardPage extends StatelessWidget {
                  topRight: Radius.circular(35),
                )),
            child:
-           Column(
+           const Column(
              children: [
                CartSamplesItems()
              ],
@@ -34,6 +35,11 @@ class cardPage extends StatelessWidget {
          )
        ],
      ),
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.all(10),
+        child: cardBottomBar(),
+      ),
+
     );
   }
 }
