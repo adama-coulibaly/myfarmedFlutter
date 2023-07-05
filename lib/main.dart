@@ -12,6 +12,7 @@ import 'Pages/cardPage.dart';
 import 'Pages/formationPage.dart';
 import 'Pages/loginPage.dart';
 import 'Pages/register.dart';
+import 'Pages/singinPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,7 +65,8 @@ class MyApp extends StatelessWidget {
         "formationPage": (context) => formationPage(),
         "RegisterPage": (context) => RegisterPage(),
         "bottomBar": (context) => bottomBar(),
-        "forgetLogin": (context) => forgetLogin()
+        "forgetLogin": (context) => forgetLogin(),
+        "singinPage": (context) => singinPage()
       },
     );
   }

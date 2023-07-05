@@ -105,7 +105,7 @@ class loginPage extends StatelessWidget {
                           const SizedBox(height: 110,),
                           Container(
                             child: TextButton(onPressed: () {
-                              Navigator.pushNamed(context, "RegisterPage");
+                              Navigator.pushNamed(context, "singinPage");
                             }, child: const Text("Vous n'avez pas de compte ?",style:
                             TextStyle(
                                 fontSize: 17,
