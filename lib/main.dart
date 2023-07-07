@@ -1,7 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myfarmed/PackagesContenues/topbar.dart';
+import 'package:myfarmed/firebase_options.dart';
 
 import 'PackagesContenues/bottomBar.dart';
 import 'PackagesContenues/homeSlider.dart';
@@ -14,8 +16,10 @@ import 'Pages/loginPage.dart';
 import 'Pages/register.dart';
 import 'Pages/singinPage.dart';
 
-void main() {
-  runApp(MyApp());
+ Future<void> main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
 }
 
 class SplashScreen extends StatelessWidget {
