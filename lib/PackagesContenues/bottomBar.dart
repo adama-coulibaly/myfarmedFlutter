@@ -25,7 +25,7 @@ class _State extends State<bottomBar> {
     const Shoppage(),
     const fermePage(),
     const formationPage(),
-    const FormationVideo(),
+    const forumPage(),
   ];
 
 /*  List onglets = [

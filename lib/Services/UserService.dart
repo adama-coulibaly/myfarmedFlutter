@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as  http;
 import 'package:myfarmed/Pages/loginPage.dart';
 import 'package:quickalert/quickalert.dart';
 import '../Globals/globalConstant.dart';
 
-class registerService{
+class UserService{
   Future<http.Response> saveUser(BuildContext context,String nom,String prenom,String username,String email, String adresse, String password, int statut) async{
      // Ajouter le paramètre BuildContext ici
 
@@ -18,7 +17,6 @@ class registerService{
       'prenom': prenom,
       'adresse':adresse,
       'email': email,
-      'adresse': adresse,
       'password': password,
       'statut':'$statut'
 

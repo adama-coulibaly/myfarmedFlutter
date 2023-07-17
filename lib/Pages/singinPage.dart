@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myfarmed/Services/registerService.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:myfarmed/Pages/lesUtilisateurs.dart';
+import 'package:myfarmed/Services/FireBase/usersRegistration.dart';
+import 'package:myfarmed/Services/UserService.dart';
 
 class singinPage extends StatefulWidget {
   const singinPage({Key? key}) : super(key: key);
@@ -23,7 +26,10 @@ class _singinPageState extends State<singinPage> {
   final _formfieldStep2 = GlobalKey<FormState>();
 
 
-registerService service =registerService();
+//usersRegistration service = usersRegistration();
+  UserService service = UserService();
+
+
   List<Step> lesSteppers() => [
         Step(
           state: _activeIndex <= 0 ? StepState.editing : StepState.complete,
@@ -163,7 +169,12 @@ registerService service =registerService();
                 SizedBox(
                   height: 15,
                 ),
-                TextFormField(
+                IntlPhoneField(
+                  invalidNumberMessage: 'Ce numéro est invalide !',
+                  initialCountryCode: '+223',
+                  dropdownIconPosition: IconPosition.trailing,
+                  searchText: "Choisissez un pays",
+                  languageCode: 'fr',
                   controller: usernameontroller,
                   keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
@@ -175,7 +186,7 @@ registerService service =registerService();
                     ),
                   ),
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value!.number.isEmpty) {
                       return "Numéro invalide";
                     }
                   },
@@ -251,6 +262,13 @@ registerService service =registerService();
         backgroundColor: Colors.green,
         elevation: 0,
         title: Text("Inscription"),
+        actions: [
+          IconButton(
+              onPressed: ()=>{
+                Navigator.push(context, MaterialPageRoute(builder: (context) => allUsers()))
+              },
+              icon: Icon(Icons.supervised_user_circle_outlined))
+        ],
       ),
       body: Theme(
         data: Theme.of(context).copyWith(colorScheme:ColorScheme.light(primary: Colors.green)),
@@ -311,7 +329,6 @@ registerService service =registerService();
               }
             }
 
-            final endStep = _activeIndex == lesSteppers().length - 1;
 
 
 

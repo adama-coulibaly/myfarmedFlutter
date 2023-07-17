@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Services/registerService.dart';
+import '../Services/UserService.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _RegisterPage extends State<RegisterPage> {
 
 
 
-    registerService service = registerService();
+    UserService service = UserService();
 
 
 

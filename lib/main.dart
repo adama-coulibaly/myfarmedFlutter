@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         "RegisterPage": (context) => RegisterPage(),
         "bottomBar": (context) => bottomBar(),
         "forgetLogin": (context) => forgetLogin(),
-        "singinPage": (context) => singinPage()
+        "singinPage": (context) => singinPage(),
       },
     );
   }

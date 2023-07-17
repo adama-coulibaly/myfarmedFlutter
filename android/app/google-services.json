@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "144181677357",
+    "project_id": "myfarmed",
+    "storage_bucket": "myfarmed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144181677357:android:3e09b68be49284b56457a4",
+        "android_client_info": {
+          "package_name": "com.example.myfarmed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144181677357-66hd33nqir5nfcisri8le2uk6suniqd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDInkpkRKY3bjLSKtR1_tVafd4bR4U7Zq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144181677357-66hd33nqir5nfcisri8le2uk6suniqd1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
