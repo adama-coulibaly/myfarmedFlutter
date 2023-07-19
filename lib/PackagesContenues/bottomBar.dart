@@ -4,6 +4,7 @@ import 'package:myfarmed/Pages/HomePage.dart';
 import 'package:myfarmed/Pages/ShopPage.dart';
 import 'package:myfarmed/Pages/cardPage.dart';
 import 'package:myfarmed/Pages/formationPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Pages/fermePage.dart';
 import '../Pages/forumPage.dart';
@@ -53,6 +54,7 @@ class _State extends State<bottomBar> {
               activeColor: Colors.green,
               gap: 8,
               tabBackgroundColor: Colors.white,
+
 
 
 

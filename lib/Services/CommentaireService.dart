@@ -28,7 +28,8 @@ class CommentaireService{
 
         commentaires.add(allCommentaires);
       }
-      print("Commentaires  ${commentaires}");
+      commentaires.sort((a, b) => DateTime.parse(b.datecom!).compareTo(DateTime.parse(a.datecom!)));
+
       return commentaires;
     } else {
       print("Nooooooooooooooooo");

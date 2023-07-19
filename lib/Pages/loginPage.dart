@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfarmed/Services/UserService.dart';
 
 
 void main() => runApp(loginPage());
@@ -6,9 +7,15 @@ void main() => runApp(loginPage());
 class loginPage extends StatelessWidget {
   const loginPage({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+
+    final _formKeys = GlobalKey<FormState>();
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    UserService service = UserService() ;
+  return  MaterialApp(
 
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -39,13 +46,16 @@ class loginPage extends StatelessWidget {
                           topLeft: Radius.circular(35),
                           topRight: Radius.circular(35),
                         )),
-                    child: Container(
+                    child: Form(
+                      key: _formKeys,
                       child:  Column(
                         children: [
+
 
                           SizedBox(height: 35,),
 
                           TextFormField(
+                            controller: usernameController,
                             keyboardType: TextInputType.text,
                             decoration: const InputDecoration(
                               labelText: "Adresse email ou phone",
@@ -53,10 +63,16 @@ class loginPage extends StatelessWidget {
                               prefixIcon: Icon(Icons.mail_outline,color: Colors.green,),
 
                             ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return "Adresse mail ou numéro obligatoire";
+                              }
+                            },
                           ),
 
                           SizedBox(height: 35,),
                           TextFormField(
+                            controller: passwordController,
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: true,
                             decoration: const InputDecoration(
@@ -65,6 +81,11 @@ class loginPage extends StatelessWidget {
                               prefixIcon: Icon(Icons.lock,color: Colors.green,),
                               suffixIcon: Icon(Icons.remove_red_eye_sharp,color: Colors.green,),
                             ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return "Mot de passe est obligatoire";
+                              }
+                            },
                           ),
 
 
@@ -75,7 +96,8 @@ class loginPage extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: ()=>{
-                                  Navigator.pushNamed(context, "forgetLogin")
+
+                                 Navigator.pushNamed(context, "forgetLogin")
                                 },
                                 child: const Text("Mot de passe oublié ?",
                                   style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,
@@ -92,9 +114,9 @@ class loginPage extends StatelessWidget {
                             ),
 
                             child: TextButton(onPressed: () {
-                              Navigator.pushNamed(context, "bottomBar");
-                              print("object");
-                            }, child: const Text("Connexion",style:
+                              if(_formKeys.currentState!.validate()){
+                                service.Sigin(context,usernameController.text, passwordController.text);
+                              }                          }, child: const Text("Connexion",style:
                             TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

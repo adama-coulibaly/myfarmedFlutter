@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:myfarmed/Models/Commentaires.dart';
 
 import '../Models/Themes.dart';
@@ -21,6 +22,78 @@ class _forumPageState extends State<forumPage> {
   void initState() {
     super.initState();
     themes = service.allThemes();
+  }
+
+  //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DIALOG :::::::::::::::::::::::::::::::::::::::::
+  Future<void> addThemeDialog(BuildContext context) async {
+    TextEditingController themeController = TextEditingController();
+
+    final _formKey = GlobalKey<FormState>();
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Poster un thème ici",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.green),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: themeController,
+                      minLines: 2,
+                      maxLines: 6,
+                      decoration: const InputDecoration(
+                          labelText: "Votre thème ici",
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)))),
+                      keyboardType: TextInputType.multiline,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return " Veuillez saisir un thème";
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: TextButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              service.addTheme(context, themeController.text);
+                            }
+                          },
+                          child: const Text(
+                            "Poster",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          )),
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+        });
   }
 
   @override
@@ -102,6 +175,14 @@ class _forumPageState extends State<forumPage> {
                     if (snapshot.hasError) {
                       print("ERRR ${snapshot.error}");
                       return const Center(child: Icon(Icons.error));
+                    }
+                    if (snapshot.data!.isEmpty) {
+                      return const Center(
+                          child: Text(
+                        "Auccun thème à discuter !",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ));
                     }
 
                     if (snapshot.hasData) {
@@ -188,7 +269,8 @@ class _forumPageState extends State<forumPage> {
                                     Container(
                                       padding: EdgeInsets.only(right: 10),
                                       child: Text(
-                                        "Par: ${snapshot.data![index].user?["nom"]} ${snapshot.data![index].user?["prenom"]} le ${snapshot.data![index].dateposte}",
+                                        "Par: ${snapshot.data![index].user?["nom"]} ${snapshot.data![index].user?["prenom"]} le "
+                                            "${DateFormat('dd-MM-yyyy à HH:mm').format(DateTime.parse(snapshot.data![index].dateposte!))}",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 13,
@@ -291,10 +373,16 @@ class _forumPageState extends State<forumPage> {
             ),
           ),
         ),
-        floatingActionButton: bouttonPoster(),
+        floatingActionButton: FloatingActionButton.extended(
+            onPressed: () async {
+              await addThemeDialog(context);
+            },
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            icon: Icon(Icons.add_circle_outline),
+            label: Text("Poster ici")),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       ),
-
     );
   }
 }
@@ -308,6 +396,75 @@ class detailForum extends StatelessWidget {
 
   late Future<List<Commentaires>> commentaire =
       commentaireService.allCommentairesById(idtheme!);
+
+  //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DIALOG  COMMENTAIRES :::::::::::::::::::::::::::::::::::::::::
+  Future<void> addCommentaireDialog(BuildContext context) async {
+    final _formKey = GlobalKey<FormState>();
+    TextEditingController? addTCommentaireController;
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Commenté le thème ici",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.green),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: addTCommentaireController,
+                      minLines: 2,
+                      maxLines: 6,
+                      decoration: const InputDecoration(
+                          labelText: "Votre commentaire ici",
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)))),
+                      keyboardType: TextInputType.multiline,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return " Veuillez saisir un commentaire";
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: TextButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
+                          child: const Text(
+                            "Poster",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          )),
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -347,7 +504,6 @@ class detailForum extends StatelessWidget {
                     return const Center(child: Icon(Icons.error));
                   }
                   if (snapshot.data!.isEmpty) {
-                    print("ERRR ${snapshot.error}");
                     return const Center(
                         child: Text(
                       "Auccun commentaire !",
@@ -437,7 +593,8 @@ class detailForum extends StatelessWidget {
                                   Container(
                                     padding: EdgeInsets.only(right: 10),
                                     child: Text(
-                                      "Par: ${snapshot.data![index].user?["nom"]} ${snapshot.data![index].user?["prenom"]} le ${snapshot.data![index].datecom}",
+                                      "Par: ${snapshot.data![index].user?["nom"]} ${snapshot.data![index].user?["prenom"]} le "
+                                          "${DateFormat('dd-MM-yyyy à HH:mm').format(DateTime.parse(snapshot.data![index].datecom!))}",
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 13,
@@ -491,23 +648,15 @@ class detailForum extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: bouttonCommenter(),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () async {
+            await addCommentaireDialog(context);
+          },
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          icon: Icon(Icons.sms_outlined),
+          label: Text("Commenter")),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 }
-
-Widget bouttonPoster() =>
-    FloatingActionButton.extended(onPressed: () {},
-
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        icon: Icon(Icons.add_circle_outline),
-        label: Text("Poster ici"));
-
-Widget bouttonCommenter() =>
-    FloatingActionButton.extended(onPressed: () {},
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        icon: Icon(Icons.sms_outlined),
-        label: Text("Commenter"));
